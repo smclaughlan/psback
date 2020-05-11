@@ -14,6 +14,16 @@ router.get('/char/:id', cors(), async function (req, res, next) { //search by ch
   }
 });
 
+router.get('/outfit/:id', cors(), async function (req, res, next) { //search by outfit name
+  console.log(req.params);
+  const outfitname = req.params.id;
+  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/outfit/?name=^${outfitname}&c:limit=10&c:sort=member_count:-1`);
+  if (result.ok) {
+    const resJson = await result.json();
+    res.send(resJson);
+  }
+});
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
