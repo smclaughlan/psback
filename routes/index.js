@@ -1,14 +1,20 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const cors = require('cors');
 
+router.get('/vehicle/:id', cors(), async function (req, res, next) {
+  let vehicle = req.params.id;
+  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2/vehicle/?name.en=${vehicle}`);
+  if (result.ok) {
+    const resJson = await result.json();
+    res.send(resJson);
+  }
+})
 
 router.get('/leaderboard/:id', cors(), async function (req, res, next) { //get leaderboard info
   let type = req.params.id;
-  if (type.toLowerCase() === 'kills') type = 'Kills';
-  if (type.toLowerCase() === 'score') type = 'Score';
-  if (type.toLowerCase() === 'time') type = 'Time';
   const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/leaderboard/?name=${type}&period=Forever&c:limit=10&c:resolve=character(name,times.minutes_played,faction)`);
   if (result.ok) {
     const resJson = await result.json();
