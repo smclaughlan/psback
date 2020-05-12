@@ -4,6 +4,14 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const cors = require('cors');
 
+router.get('/factions', cors(), async function (req, res, next) {
+  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/faction?c:limit=10&c:lang=en`);
+  if (result.ok) {
+    const resJson = await result.json();
+    res.send(resJson);
+  }
+})
+
 router.get('/classes', cors(), async function (req, res, next) {
   const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/profile?c:limit=500&c:lang=en&faction_id=1`);
   if (result.ok) {
