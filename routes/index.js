@@ -4,8 +4,15 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const cors = require('cors');
 
-router.get('/vehicles/', cors(), async function (req, res, next) {
-  let vehicle = req.params.id;
+router.get('/classes', cors(), async function (req, res, next) {
+  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/profile?c:limit=500&c:lang=en&faction_id=1`);
+  if (result.ok) {
+    const resJson = await result.json();
+    res.send(resJson);
+  }
+})
+
+router.get('/vehicles', cors(), async function (req, res, next) {
   const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/vehicle?c:limit=14&&c:lang=en`);
   if (result.ok) {
     const resJson = await result.json();
@@ -32,7 +39,7 @@ router.get('/char/:id', cors(), async function (req, res, next) { //get specific
   }
 });
 
-router.get('/outfit/:id(\\d+)', cors(), async function (req, res, next) { //get specific outfit info
+router.get('/outfit/:id', cors(), async function (req, res, next) { //get specific outfit info
   console.log(req.params);
   const outfitId = req.params.id;
   const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/outfit?c:resolve=member_online_status,member_character(times.minutes_played,character_id,member_since_date,battle_rank,prestige_level,name.first,certs.earned_points,certs.gifted_points,profile_id)&c:join=type:profile%5Eon:members.profile_id%5Eto:profile_id%5Elist:1%5Eshow:name.en%27image_path%5Einject_at:main_class&c:join=type:characters_stat_history%5Eon:members.character_id%5Eto:character_id%5Elist:1%5Eshow:stat_name%27all_time%5Einject_at:stats_history%5Eterms:stat_name=deaths%27stat_name=kills&c:join=characters_stat%5Eon:members.character_id%5Eto:character_id%5Elist:1%5Eshow:stat_name%27value_forever%27profile_id%5Elist:1%5Einject_at:stats%5Eterms:stat_name=score%27stat_name=hit_count%27stat_name=fire_count(profile%5Eon:profile_id%5Eto:profile_type_id%5Eshow:name.en%5Einject_at:class)&outfit_id=${outfitId}&c:resolve=member_online_status(online_status),member_character(battle_rank)&c:hide=character_id,member_since,rank,rank_ordinal`);
