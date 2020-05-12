@@ -4,9 +4,9 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const cors = require('cors');
 
-router.get('/vehicle/:id', cors(), async function (req, res, next) {
+router.get('/vehicles/', cors(), async function (req, res, next) {
   let vehicle = req.params.id;
-  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2/vehicle/?name.en=${vehicle}`);
+  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/vehicle?c:limit=14&&c:lang=en`);
   if (result.ok) {
     const resJson = await result.json();
     res.send(resJson);
