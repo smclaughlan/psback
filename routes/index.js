@@ -37,6 +37,16 @@ router.get('/leaderboard/:id', cors(), async function (req, res, next) { //get l
   }
 });
 
+router.get('/charid/:id', cors(), async function (req, res, next) { //get specific character info
+  console.log(req.params);
+  const charid = req.params.id;
+  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/character/?character_id=${charid}&c:resolve=world,outfit,stat,stat_history,profile,online_status`);
+  if (result.ok) {
+    const resJson = await result.json();
+    res.send(resJson);
+  }
+});
+
 router.get('/char/:id', cors(), async function (req, res, next) { //get specific character info
   console.log(req.params);
   const name = req.params.id;
