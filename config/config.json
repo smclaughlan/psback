@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "psstatsuser",
+    "password": "J0874ik7vA",
+    "database": "psstats_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "seederStorage": "sequelize"
+  },
+  "test": {
+    "username": "psstatsuser",
+    "password": "J0874ik7vA",
+    "database": "psstats_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "seederStorage": "sequelize"
+  },
+  "production": {
+    "username": "psstatsuser",
+    "password": "J0874ik7vA",
+    "database": "psstats_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "seederStorage": "sequelize"
+  }
+}
