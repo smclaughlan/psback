@@ -4,6 +4,31 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const cors = require('cors');
 
+const { sequelize } = require("../models");
+const db = require("../models");
+
+router.get("/comments/:url", async function (req, res) {
+  const url = req.params.url;
+  const comments = await db.Comment.findAll({
+    where: { url },
+    order: [["createdAt", "ASC"]]
+  })
+
+  res.json({ comments });
+})
+
+router.post("/comments/:url", async function (req, res) {
+  const { name, email, url, body } = req.body;
+  const comment = await db.Comment.create({
+    name,
+    email,
+    url,
+    body
+  })
+
+  res.json({ comment });
+})
+
 router.get('/factions', cors(), async function (req, res, next) {
   const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/faction?c:limit=10&c:lang=en`);
   if (result.ok) {

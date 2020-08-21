@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(1000)
       },
-      comment: {
+      body: {
         allowNull: false,
         type: Sequelize.TEXT
       },

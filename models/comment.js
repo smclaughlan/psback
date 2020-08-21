@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     url: DataTypes.STRING,
-    comment: DataTypes.STRING
+    body: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Comment',
