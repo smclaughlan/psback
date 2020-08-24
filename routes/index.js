@@ -7,7 +7,7 @@ const cors = require('cors');
 const { sequelize } = require("../models");
 const db = require("../models");
 
-router.get("/comments/:url", async function (req, res) {
+router.get("/comments/:url", cors(), async function (req, res) {
   const url = req.params.url;
   const comments = await db.Comment.findAll({
     where: { url },
@@ -17,7 +17,7 @@ router.get("/comments/:url", async function (req, res) {
   res.json({ comments });
 })
 
-router.post("/comments/:url", async function (req, res) {
+router.post("/comments/:url", cors(), async function (req, res) {
   const { name, email, url, body } = req.body;
   const comment = await db.Comment.create({
     name,
@@ -27,6 +27,20 @@ router.post("/comments/:url", async function (req, res) {
   })
 
   res.json({ comment });
+})
+
+router.delete("/comments/:url", cors(), async function (req, res) {
+  const { name, email, url, body } = req.body;
+  const comment = await db.Comment.destroy({
+    where: {
+      name,
+      email,
+      url,
+      body
+    }
+  })
+
+  res.end();
 })
 
 router.get('/factions', cors(), async function (req, res, next) {
