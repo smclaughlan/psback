@@ -104,11 +104,15 @@ router.get('/outfit/:id', cors(), async function (req, res, next) { //get specif
 });
 
 router.get('/chars/:id', cors(), async function (req, res, next) { //search by character name
-  const name = req.params.id.toLowerCase();
-  const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/character_name/?name.first_lower=^${name}&c:limit=10&c:show=name.first&c:sort=name.first_lower`);
-  if (result.ok) {
-    const resJson = await result.json();
-    res.send(resJson);
+  try {
+    const name = req.params.id.toLowerCase();
+    const result = await fetch(`http://census.daybreakgames.com/${process.env.API}/get/ps2:v2/character_name/?name.first_lower=^${name}&c:limit=10&c:show=name.first&c:sort=name.first_lower`);
+    if (result.ok) {
+      const resJson = await result.json();
+      res.send(resJson);
+    }
+  } catch (e) {
+    console.log(e);
   }
 });
 
