@@ -7,8 +7,8 @@ const cors = require('cors');
 const { sequelize } = require("../models");
 const db = require("../models");
 
-router.get("/comments/:url", cors(), async function (req, res) {
-  const url = req.params.url;
+router.get("/comments/", cors(), async function (req, res) {
+  const url = req.query.url;
   const comments = await db.Comment.findAll({
     where: { url },
     order: [["createdAt", "ASC"]]
