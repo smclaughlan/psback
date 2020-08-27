@@ -17,8 +17,9 @@ router.get("/comments/:url", cors(), async function (req, res) {
   res.json({ comments });
 })
 
-router.post("/comments/:url", cors(), async function (req, res) {
+router.post("/comments", cors(), async function (req, res) {
   const { name, email, url, body } = req.body;
+  // console.log(name, email, url, body);
   const comment = await db.Comment.create({
     name,
     email,
@@ -29,7 +30,7 @@ router.post("/comments/:url", cors(), async function (req, res) {
   res.json({ comment });
 })
 
-router.delete("/comments/:url", cors(), async function (req, res) {
+router.delete("/comments", cors(), async function (req, res) {
   const { name, email, url, body } = req.body;
   const comment = await db.Comment.destroy({
     where: {
