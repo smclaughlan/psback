@@ -31,13 +31,10 @@ router.post("/comments", cors(), async function (req, res) {
 })
 
 router.delete("/comments", cors(), async function (req, res) {
-  const { name, email, url, body } = req.body;
+  const { id } = req.body;
   const comment = await db.Comment.destroy({
     where: {
-      name,
-      email,
-      url,
-      body
+      id
     }
   })
 
