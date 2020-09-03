@@ -18,6 +18,8 @@ const corsOptions = {
   }
 }
 
+app.options('*', cors(corsOptions));
+
 router.get("/comments/", async function (req, res) {
   const url = req.query.url;
   const comments = await db.Comment.findAll({
