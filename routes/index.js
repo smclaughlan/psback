@@ -19,6 +19,8 @@ router.get("/comments/", cors(), async function (req, res) {
 })
 
 router.post("/comments", cors(), async function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   const { name, email, url, body } = req.body;
   // console.log(name, email, url, body);
   const comment = await db.Comment.create({
@@ -32,6 +34,8 @@ router.post("/comments", cors(), async function (req, res) {
 })
 
 router.delete("/comments", cors(), async function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
   const { id } = req.body;
   const comment = await db.Comment.destroy({
     where: {
