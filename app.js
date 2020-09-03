@@ -8,16 +8,16 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-const whiteList = ['http://localhost:3000/*', 'https://psstats.herokuapp.com/*'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whiteList.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('now allowed by CORS'));
-    }
-  }
-}
+// const whiteList = ['http://localhost:3000/*', 'https://psstats.herokuapp.com/*'];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whiteList.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('now allowed by CORS'));
+//     }
+//   }
+// }
 
 const cors = require('cors');
 
@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/', indexRouter);
 
 module.exports = app;

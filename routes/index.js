@@ -7,18 +7,18 @@ const cors = require('cors');
 const { sequelize } = require("../models");
 const db = require("../models");
 
-const whiteList = ['http://localhost:3000', 'https://psstats.herokuapp.com/'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whiteList.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('now allowed by CORS'));
-    }
-  }
-}
+// const whiteList = ['http://localhost:3000', 'https://psstats.herokuapp.com/'];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whiteList.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('now allowed by CORS'));
+//     }
+//   }
+// }
 
-app.options('*', cors(corsOptions));
+app.options('*', cors());
 
 router.get("/comments/", async function (req, res) {
   const url = req.query.url;
