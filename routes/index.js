@@ -7,6 +7,7 @@ const cors = require('cors');
 const { sequelize } = require("../models");
 const db = require("../models");
 
+
 router.get("/comments/", cors(), async function (req, res) {
   const url = req.query.url;
   const comments = await db.Comment.findAll({
