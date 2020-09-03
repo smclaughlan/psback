@@ -14,7 +14,7 @@ var app = express();
 //     if (whiteList.indexOf(origin) !== -1) {
 //       callback(null, true);
 //     } else {
-//       callback(new Error('now allowed by CORS'));
+//       callback(new Error('not allowed by CORS'));
 //     }
 //   }
 // }
