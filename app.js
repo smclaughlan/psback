@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-const whiteList = ['http://localhost:3000', 'https://psstats.herokuapp.com/'];
+const whiteList = ['http://localhost:3000/*', 'https://psstats.herokuapp.com/*'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whiteList.indexOf(origin) !== -1) {
