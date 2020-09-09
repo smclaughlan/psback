@@ -18,7 +18,7 @@ const db = require("../models");
 //   }
 // }
 
-// router.use(cors());
+router.use(cors());
 // router.options('*', cors());
 router.get("/comments", cors(), async function (req, res) {
   const url = req.query.url;
