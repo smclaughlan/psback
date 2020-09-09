@@ -40,7 +40,11 @@ router.post("/comments", cors(), async function (req, res) {
     body
   })
 
-  res.end();
+  res.send({
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    }
+  });
 })
 
 router.delete("/comments", cors(), async function (req, res) {
