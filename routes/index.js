@@ -40,7 +40,7 @@ router.post("/comments", cors(), async function (req, res) {
     body
   })
 
-  res.json({ comment });
+  res.end();
 })
 
 router.delete("/comments", cors(), async function (req, res) {
