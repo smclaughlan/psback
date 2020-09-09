@@ -19,7 +19,6 @@ const db = require("../models");
 // }
 
 // router.use(cors());
-// router.options('*', cors());
 router.get("/comments", cors(), async function (req, res) {
   const url = req.query.url;
   const comments = await db.Comment.findAll({
@@ -30,6 +29,7 @@ router.get("/comments", cors(), async function (req, res) {
   res.json({ comments });
 })
 
+router.options('*', cors());
 router.post("/comments", cors(), async function (req, res) {
   const { name, email, url, body } = req.body;
   // console.log(name, email, url, body);
