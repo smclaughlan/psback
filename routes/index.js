@@ -29,7 +29,7 @@ router.get("/comments", cors(), async function (req, res) {
   res.json({ comments });
 })
 
-router.options('*', cors());
+router.options("/comments", cors());
 router.post("/comments", cors(), async function (req, res) {
   const { name, email, url, body } = req.body;
   // console.log(name, email, url, body);
