@@ -4,26 +4,8 @@ const router = express.Router();
 const fetch = require('node-fetch');
 const cors = require('cors');
 
-const { sequelize } = require("../models");
 const db = require("../models");
 
-async function test() {
-  try {
-    await sequelize.authenticate();
-  } catch (e) {
-    console.log("Database connection failure.");
-    console.log(e);
-    return;
-  }
-
-  console.log("Database connection success!");
-  console.log("Sequelize is ready to use!");
-
-  // Close database connection when done with it.
-  await sequelize.close();
-}
-
-test();
 
 // const whiteList = ['http://localhost:3000', 'https://psstats.herokuapp.com/'];
 // const corsOptions = {
