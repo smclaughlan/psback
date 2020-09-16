@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const { sequelize } = require("../models");
+const { sequelize } = require("./models");
 require('dotenv').config();
 var indexRouter = require('./routes/index');
 
