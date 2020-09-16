@@ -16,6 +16,7 @@
     "seederStorage": "sequelize"
   },
   "production": {
+    "use_env_variable": "DATABASE_URL",
     "username": "psstatsuser",
     "password": "J0874ik7vA",
     "database": "psstats_production",
