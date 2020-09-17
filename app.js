@@ -9,23 +9,23 @@ var indexRouter = require('./routes/index');
 var app = express();
 
 
-async function test() {
-  try {
-    await sequelize.authenticate();
-  } catch (e) {
-    console.log("Database connection failure.");
-    console.log(e);
-    return;
-  }
+// async function test() {
+//   try {
+//     await sequelize.authenticate();
+//   } catch (e) {
+//     console.log("Database connection failure.");
+//     console.log(e);
+//     return;
+//   }
 
-  console.log("Database connection success!");
-  console.log("Sequelize is ready to use!");
+//   console.log("Database connection success!");
+//   console.log("Sequelize is ready to use!");
 
-  // Close database connection when done with it.
-  await sequelize.close();
-}
+//   // Close database connection when done with it.
+//   await sequelize.close();
+// }
 
-test();
+// test();
 
 // const whiteList = ['http://localhost:3000/*', 'https://psstats.herokuapp.com/*'];
 // const corsOptions = {
